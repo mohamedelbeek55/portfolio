@@ -1,59 +1,62 @@
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { SelectedWork } from "@/components/sections/SelectedWork";
-import { BehindInterface } from "@/components/sections/BehindInterface";
-import { HowIBuild } from "@/components/sections/HowIBuild";
+import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { TechnicalToolkit } from "@/components/sections/TechnicalToolkit";
+import { EngineeringPlayground } from "@/components/sections/EngineeringPlayground";
+import { EngineeringWorkflow } from "@/components/sections/EngineeringWorkflow";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { SectionReveal } from "@/components/ui/SectionReveal";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col min-h-screen bg-[#090a0d] text-[#f4f4f7]">
-      {/* Top Navigation */}
-      <Navbar />
+    <SmoothScrollProvider>
+      <div className="relative flex flex-col min-h-screen bg-[var(--bg-deep-black)] text-[var(--text-primary)]">
+        {/* Cinematic Navigation Floating Dock */}
+        <Navbar />
 
-      {/* Main Page Content */}
-      <main id="main-content" className="flex-1 w-full">
-        {/* Hero Section */}
-        <Hero />
+        {/* Main Content Sections */}
+        <main id="main-content" className="flex-1 w-full">
+          {/* Section B: Cinematic Hero with 3D Digital Engineering Core */}
+          <Hero />
 
-        {/* Selected Work (3 Projects) */}
-        <SectionReveal>
-          <SelectedWork />
-        </SectionReveal>
+          {/* Section C: Featured Projects Showcase (Tier 1, Tier 2, Tier 3) */}
+          <SectionReveal>
+            <FeaturedProjects />
+          </SectionReveal>
 
-        {/* Behind the Interface (8 Areas) */}
-        <SectionReveal>
-          <BehindInterface />
-        </SectionReveal>
+          {/* Section E: Interactive Technical Toolkit */}
+          <SectionReveal>
+            <TechnicalToolkit />
+          </SectionReveal>
 
-        {/* How I Build (Architectural Blueprint) */}
-        <SectionReveal>
-          <HowIBuild />
-        </SectionReveal>
+          {/* Section F: Interactive Engineering Playground */}
+          <SectionReveal>
+            <EngineeringPlayground />
+          </SectionReveal>
 
-        {/* Technical Toolkit */}
-        <SectionReveal>
-          <TechnicalToolkit />
-        </SectionReveal>
+          {/* Section G: Engineering Workflow (How I Build) */}
+          <SectionReveal>
+            <EngineeringWorkflow />
+          </SectionReveal>
 
-        {/* About Mohamed */}
-        <SectionReveal>
-          <About />
-        </SectionReveal>
+          {/* Section H: About Dossier */}
+          <SectionReveal>
+            <About />
+          </SectionReveal>
 
-        {/* Contact & Channels */}
-        <SectionReveal>
-          <Contact />
-        </SectionReveal>
-      </main>
+          {/* Section I: Contact Terminal */}
+          <SectionReveal>
+            <Contact />
+          </SectionReveal>
+        </main>
 
-      {/* Minimal Footer */}
-      <Footer />
-    </div>
+        {/* Section J: Minimal Engineering Footer */}
+        <Footer />
+      </div>
+    </SmoothScrollProvider>
   );
 }

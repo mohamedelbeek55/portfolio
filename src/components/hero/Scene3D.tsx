@@ -441,42 +441,42 @@ export function Scene3D({ progressRef, onSceneReady, maxDpr }: Scene3DProps) {
         let coreRotY: number;
         let coreScale: number;
 
-        if (p < 0.25) {
-          // Stage A -> Stage B interpolation
-          const t = p / 0.25;
+        if (p < 0.22) {
+          // Stage A -> Stage B interpolation (0.00 - 0.22)
+          const t = p / 0.22;
           camX = 0.3 * (1 - t);
-          camY = 0.2 + t * 0.4;
-          camZ = 3.4 + t * 2.2; // 3.4 -> 5.6
+          camY = 0.2 + t * 0.35;
+          camZ = 3.4 + t * 1.8; // 3.4 -> 5.2
           lookAtY = 0.0;
           coreRotY = t * 0.5;
           coreScale = 1.0;
-        } else if (p < 0.55) {
-          // Stage B
-          const t = (p - 0.25) / 0.3;
+        } else if (p < 0.52) {
+          // Stage B (0.22 - 0.52)
+          const t = (p - 0.22) / 0.3;
           camX = 0.0;
-          camY = 0.6 + t * 0.2; // 0.6 -> 0.8
-          camZ = 5.6 + t * 2.4; // 5.6 -> 8.0
-          lookAtY = 0.1 * t;
-          coreRotY = 0.5 + t * 0.8;
-          coreScale = 1.0;
-        } else if (p < 0.85) {
-          // Stage C
-          const t = (p - 0.55) / 0.3;
+          camY = 0.55 + t * 0.2; // 0.55 -> 0.75
+          camZ = 5.2 + t * 2.4;  // 5.2 -> 7.6
+          lookAtY = 0.05 * t;
+          coreRotY = 0.5 + t * 0.7;
+          coreScale = 1.0 - t * 0.05;
+        } else if (p < 0.82) {
+          // Stage C (0.52 - 0.82)
+          const t = (p - 0.52) / 0.3;
           camX = 0.0;
-          camY = 0.8 - t * 0.4; // 0.8 -> 0.4
-          camZ = 8.0 + t * 0.6; // 8.0 -> 8.6
-          lookAtY = 0.1 - t * 0.1;
-          coreRotY = 1.3 + t * 0.4;
-          coreScale = 1.0 - t * 0.1;
+          camY = 0.75 - t * 0.25; // 0.75 -> 0.50
+          camZ = 7.6 + t * 0.8;   // 7.6 -> 8.4
+          lookAtY = 0.05 - t * 0.05;
+          coreRotY = 1.2 + t * 0.5;
+          coreScale = 0.95 - t * 0.1;
         } else {
-          // Stage D
-          const t = (p - 0.85) / 0.15;
+          // Stage D (0.82 - 1.00) — Graceful receding monolith, never disappearing
+          const t = (p - 0.82) / 0.18;
           camX = 0.0;
-          camY = 0.4 - t * 1.8; // Camera dips downward
-          camZ = 8.6 + t * 2.5; // Camera pushes out
-          lookAtY = -t * 1.5;
-          coreRotY = 1.7 + t * 0.5;
-          coreScale = 0.9 - t * 0.4; // Scales down gracefully
+          camY = 0.5 - t * 0.15; // 0.50 -> 0.35 (stays elevated)
+          camZ = 8.4 + t * 1.0;  // 8.4 -> 9.4 (gentle push back)
+          lookAtY = -t * 0.2;
+          coreRotY = 1.7 + t * 0.35;
+          coreScale = 0.85 - t * 0.12; // 0.85 -> 0.73 (remains prominent in horizon)
         }
 
         // Apply interactive mouse parallax (damped)

@@ -17,12 +17,14 @@ interface ProjectCardProps {
   project: ProjectItem;
   onPreview: (project: ProjectItem) => void;
   variant?: "flagship" | "compact" | "grid";
+  index?: number;
 }
 
 export function ProjectCard({
   project,
   onPreview,
   variant = "grid",
+  index,
 }: ProjectCardProps) {
   const isFlagship = variant === "flagship";
   const cardRef = useRef<HTMLElement>(null);
@@ -31,6 +33,11 @@ export function ProjectCard({
   const githubLink = project.links.find((l) => l.type === "github");
   const liveLink = project.links.find((l) => l.type === "live");
   const apiDocsLink = project.links.find((l) => l.type === "api-docs");
+
+  const cardIndex = index ?? project.order ?? 0;
+  // Stagger phase offsets across 7-9s slow cycles with gentle vertical float
+  const animationDelay = `${(cardIndex * 1.35) % 6}s`;
+  const animationDuration = `${7.2 + (cardIndex % 3) * 0.8}s`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = cardRef.current;
@@ -55,21 +62,28 @@ export function ProjectCard({
   };
 
   return (
-    <article
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`group relative rounded-2xl bg-[#080B12] transition-transform duration-200 ease-out flex flex-col justify-between overflow-hidden border ${
-        isFlagship
-          ? "border-[var(--border-accent)] hover:border-[var(--accent-neon-cyan)] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(37,99,235,0.18)]"
-          : "border-[var(--border-subtle)] hover:border-[var(--border-accent)] p-5 sm:p-6 shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
-      }`}
+    <div
+      className="w-full card-ambient-idle"
       style={{
-        transform: tilt.isHovered
-          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-4px)`
-          : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)",
+        animationDelay,
+        animationDuration,
       }}
     >
+      <article
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className={`group relative rounded-2xl bg-[#080B12] transition-transform duration-200 ease-out flex flex-col justify-between overflow-hidden border ${
+          isFlagship
+            ? "border-[var(--border-accent)] hover:border-[var(--accent-neon-cyan)] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(37,99,235,0.18)]"
+            : "border-[var(--border-subtle)] hover:border-[var(--border-accent)] p-5 sm:p-6 shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
+        }`}
+        style={{
+          transform: tilt.isHovered
+            ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-4px)`
+            : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)",
+        }}
+      >
       {/* Dynamic Cursor Light Sheen */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300"
@@ -237,5 +251,6 @@ export function ProjectCard({
         </Link>
       </div>
     </article>
+  </div>
   );
 }

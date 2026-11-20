@@ -52,46 +52,46 @@ export function Hero() {
 
   // Direct DOM updater bypassing React reconciliation entirely
   const updateDomOverlays = useCallback((p: number) => {
-    // Stage A: 0.00 - 0.25 (Close-up)
-    const opA = p < 0.2 ? 1 - p / 0.2 : 0;
+    // Stage A: 0.00 - 0.22 (Close-up)
+    const opA = p < 0.22 ? 1 - p / 0.22 : 0;
     if (stageARef.current) {
       stageARef.current.style.opacity = opA.toFixed(3);
-      stageARef.current.style.pointerEvents = p < 0.15 ? "auto" : "none";
+      stageARef.current.style.pointerEvents = p < 0.16 ? "auto" : "none";
     }
 
-    // Stage B: 0.22 - 0.55 (Pull-back & Telemetry)
+    // Stage B: 0.18 - 0.54 (Pull-back & Telemetry Reveal)
     const opB =
-      p >= 0.2 && p < 0.55
-        ? p < 0.35
-          ? (p - 0.2) / 0.15
-          : p <= 0.45
+      p >= 0.18 && p < 0.54
+        ? p < 0.28
+          ? (p - 0.18) / 0.10
+          : p <= 0.46
           ? 1
-          : 1 - (p - 0.45) / 0.1
+          : 1 - (p - 0.46) / 0.08
         : 0;
     if (stageBRef.current) {
       stageBRef.current.style.opacity = opB.toFixed(3);
     }
 
-    // Stage C: 0.50 - 0.88 (Identity Reveal)
+    // Stage C: 0.48 - 0.95 (Identity Reveal)
+    // Stays strongly visible through 0.82, then softly eases to 0.30 to maintain visual continuity without empty voids
     const opC =
-      p >= 0.5 && p <= 0.88
-        ? p < 0.65
-          ? (p - 0.5) / 0.15
-          : p <= 0.8
-        ? 1
-        : 1 - (p - 0.8) / 0.08
-        : p > 0.88
-        ? Math.max(0, 1 - (p - 0.88) / 0.12)
+      p >= 0.48 && p <= 0.82
+        ? p < 0.60
+          ? (p - 0.48) / 0.12
+          : 1
+        : p > 0.82
+        ? Math.max(0.3, 1 - ((p - 0.82) / 0.18) * 0.7)
         : 0;
     if (stageCRef.current) {
       stageCRef.current.style.opacity = opC.toFixed(3);
-      stageCRef.current.style.transform = `translateY(${(1 - opC) * 20}px)`;
-      stageCRef.current.style.pointerEvents = p >= 0.55 && p <= 0.95 ? "auto" : "none";
+      const translateY = p > 0.82 ? -((p - 0.82) / 0.18) * 28 : (1 - Math.min(1, opC)) * 20;
+      stageCRef.current.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+      stageCRef.current.style.pointerEvents = p >= 0.52 && p <= 0.86 ? "auto" : "none";
     }
 
-    // Stage D bottom horizon gradient
+    // Stage D Transition Cue: 0.78 - 1.00 (Approaching Selected Work)
+    const opD = p >= 0.78 ? Math.min(1, (p - 0.78) / 0.14) : 0;
     if (stageDRef.current) {
-      const opD = p > 0.85 ? Math.max(0.4, 0.4 + ((p - 0.85) / 0.15) * 0.6) : 0.4;
       stageDRef.current.style.opacity = opD.toFixed(3);
     }
 
@@ -108,11 +108,11 @@ export function Hero() {
     }
     if (cameraStageTextRef.current) {
       const stageName =
-        p < 0.25
+        p < 0.22
           ? "01_INSPECT"
-          : p < 0.55
+          : p < 0.52
           ? "02_WIDE_FIELD"
-          : p < 0.85
+          : p < 0.82
           ? "03_IDENTITY"
           : "04_TRANSITION";
       if (cameraStageTextRef.current.textContent !== stageName) {
@@ -176,8 +176,8 @@ export function Hero() {
       id="top"
       ref={trackRef}
       className={`relative w-full ${
-        isReducedMotion ? "min-h-screen" : "h-[320vh]"
-      } bg-[#080B12] overflow-hidden`}
+        isReducedMotion ? "min-h-screen" : "h-[220vh] md:h-[260vh]"
+      } bg-[#080B12]`}
     >
       {/* Sticky Fullscreen 3D Viewport */}
       <div className="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden flex flex-col justify-between select-none">
@@ -185,7 +185,7 @@ export function Hero() {
         <Scene3D progressRef={scrollProgressRef} />
 
         {/* Ambient Radial Atmospheric Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-b from-[#2563EB]/15 via-[#38BDF8]/10 to-transparent blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-full h-[500px] bg-gradient-to-b from-[#2563EB]/15 via-[#38BDF8]/10 to-transparent blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-4xl h-44 bg-gradient-to-t from-[#080B12] via-[#080B12]/80 to-transparent pointer-events-none z-10" />
 
         {/* TOP STATUS BAR (Visible throughout Stages A, B, C) */}
@@ -208,7 +208,7 @@ export function Hero() {
           </div>
         </header>
 
-        {/* STAGE A OVERLAY: The Spark / Core Inspection (0% - 25%) */}
+        {/* STAGE A OVERLAY: The Spark / Core Inspection (0% - 22%) */}
         <div
           ref={stageARef}
           className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-auto will-change-[opacity]"
@@ -237,19 +237,19 @@ export function Hero() {
           </div>
         </div>
 
-        {/* STAGE B OVERLAY: The Horizon Widens (25% - 55%) */}
+        {/* STAGE B OVERLAY: The Horizon Widens (20% - 54%) */}
         <div
           ref={stageBRef}
-          className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 will-change-[opacity]"
+          className="absolute inset-0 z-20 flex flex-col sm:flex-row items-center justify-between pointer-events-none max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-0 will-change-[opacity]"
           style={{ opacity: 0 }}
         >
-          {/* Left Telemetry Pillar */}
-          <div className="hidden lg:flex flex-col gap-4 max-w-xs p-4 rounded-xl bg-[#0C1424]/85 border border-[var(--border-medium)] backdrop-blur-md shadow-xl">
+          {/* Left / Upper Telemetry Pillar */}
+          <div className="flex flex-col gap-2.5 sm:gap-4 max-w-xs sm:max-w-sm p-3.5 sm:p-4 rounded-xl bg-[#0C1424]/90 border border-[var(--border-medium)] backdrop-blur-md shadow-xl self-start sm:self-auto">
             <div className="flex items-center gap-2 font-mono-code text-xs text-[var(--accent-neon-cyan)] font-semibold border-b border-[var(--border-subtle)] pb-2">
               <ShieldCheck className="w-4 h-4 text-[var(--accent-neon-cyan)]" />
               <span>01 // ARCHITECTURAL SCOPE</span>
             </div>
-            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] leading-relaxed">
               Full-Stack engineering built on deterministic backend boundaries, strict schemas, and ACID transaction isolation.
             </p>
             <div className="flex flex-wrap gap-1.5 font-mono-code text-[10px]">
@@ -259,13 +259,13 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Telemetry Pillar */}
-          <div className="hidden lg:flex flex-col gap-4 max-w-xs p-4 rounded-xl bg-[#0C1424]/85 border border-[var(--border-medium)] backdrop-blur-md shadow-xl text-right">
+          {/* Right / Lower Telemetry Pillar */}
+          <div className="flex flex-col gap-2.5 sm:gap-4 max-w-xs sm:max-w-sm p-3.5 sm:p-4 rounded-xl bg-[#0C1424]/90 border border-[var(--border-medium)] backdrop-blur-md shadow-xl text-right self-end sm:self-auto">
             <div className="flex items-center justify-end gap-2 font-mono-code text-xs text-[var(--accent-electric)] font-semibold border-b border-[var(--border-subtle)] pb-2">
               <span>02 // PERSISTENCE &amp; CLOUD</span>
               <Cpu className="w-4 h-4 text-[var(--accent-electric)]" />
             </div>
-            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] leading-relaxed">
               Zero data drift with PostgreSQL, Prisma ORM, containerized microservices, and idempotent payment pipelines.
             </p>
             <div className="flex flex-wrap justify-end gap-1.5 font-mono-code text-[10px]">
@@ -405,12 +405,26 @@ export function Hero() {
           </div>
         </footer>
 
-        {/* Seamless Horizon Transition Break into Next Section */}
+        {/* STAGE D TRANSITION CUE: Seamless hand-off to Selected Work (80% - 100%) */}
         <div
           ref={stageDRef}
-          className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-b from-transparent to-[#080B12] pointer-events-none z-30 will-change-[opacity]"
-          style={{ opacity: 0.4 }}
-        />
+          className="absolute inset-x-0 bottom-16 sm:bottom-20 z-30 flex flex-col items-center justify-center pointer-events-none will-change-[opacity]"
+          style={{ opacity: 0 }}
+        >
+          <div className="flex flex-col items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#0C1424]/95 border border-[var(--border-accent)] backdrop-blur-md shadow-[0_0_30px_rgba(37,99,235,0.3)]">
+            <span className="font-mono-code text-[11px] sm:text-xs text-[var(--accent-neon-cyan)] uppercase tracking-wider flex items-center gap-2 font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              STAGE 04 // APPROACHING SELECTED WORK
+            </span>
+            <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono-code text-[var(--text-secondary)]">
+              <span>EXPLORE PRODUCTION PLATFORMS</span>
+              <ChevronDown className="w-3.5 h-3.5 text-[var(--accent-neon-cyan)] animate-bounce" />
+            </div>
+          </div>
+        </div>
+
+        {/* Deep Horizon Atmospheric Gradient into Next Section */}
+        <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-[#080B12] via-[#080B12]/80 to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );

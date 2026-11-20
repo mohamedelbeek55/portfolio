@@ -71,10 +71,11 @@ export function FeaturedProjects() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {featuredProjects.map((project) => (
+            {featuredProjects.map((project, idx) => (
               <ProjectCard
                 key={project.id}
                 project={project}
+                index={idx}
                 onPreview={handleOpenPreview}
                 variant="flagship"
               />
@@ -99,10 +100,11 @@ export function FeaturedProjects() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {clientProjects.map((project) => (
+            {clientProjects.map((project, idx) => (
               <ProjectCard
                 key={project.id}
                 project={project}
+                index={idx + 2}
                 onPreview={handleOpenPreview}
                 variant="grid"
               />
@@ -136,10 +138,11 @@ export function FeaturedProjects() {
 
           {showArchive && (
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-200">
-              {archiveProjects.map((project) => (
+              {archiveProjects.map((project, idx) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
+                  index={idx + 5}
                   onPreview={handleOpenPreview}
                   variant="compact"
                 />

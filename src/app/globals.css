@@ -180,9 +180,46 @@
   background: rgba(148, 163, 184, 0.25);
 }
 
+/* ── Premium Ambient Project Card Idle Float ─────────────────────── */
+
+@keyframes cardIdleFloatDesktop {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes cardIdleFloatMobile {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+.card-ambient-idle {
+  animation: cardIdleFloatDesktop 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .card-ambient-idle {
+    animation-name: cardIdleFloatMobile;
+    animation-duration: 7.5s;
+  }
+}
+
 /* ── Reduced Motion ────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+  .card-ambient-idle {
+    animation: none !important;
+    transform: none !important;
+  }
+
   *,
   *::before,
   *::after {

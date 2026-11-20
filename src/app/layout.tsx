@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Newsreader, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const newsreader = Newsreader({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -22,9 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const siteUrl = "https://mohamedelbeek.com";
-const title = "Mohamed Elbeek — Backend Developer";
+const title = "Mohamed Elbeek — Full-Stack Developer";
 const description =
-  "Backend Developer specializing in Node.js, NestJS, TypeScript, PostgreSQL, and production-oriented API development.";
+  "Full-Stack Developer & Backend-Focused Engineer. Building complete digital products — from engaging user interfaces to secure backend systems and reliable infrastructure.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -34,12 +33,14 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
-    "Backend Developer",
+    "Full-Stack Developer",
+    "Backend Engineer",
     "Node.js",
     "NestJS",
     "TypeScript",
     "PostgreSQL",
-    "Prisma",
+    "React",
+    "Next.js",
     "REST APIs",
     "Clean Architecture",
     "Docker",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: siteUrl,
-    siteName: "Mohamed Elbeek Portfolio",
+    siteName: "Mohamed Elbeek — Digital Engineering",
     locale: "en_US",
     type: "website",
   },
@@ -79,7 +80,7 @@ const jsonLdPerson = {
   "@type": "Person",
   name: "Mohamed Elbeek",
   alternateName: "Mohamed Mahmoud Mohamed Elbeek",
-  jobTitle: "Backend Developer",
+  jobTitle: "Full-Stack Developer",
   description,
   url: siteUrl,
   address: {
@@ -101,6 +102,9 @@ const jsonLdPerson = {
     "REST APIs",
     "Clean Architecture",
     "Docker",
+    "React",
+    "Next.js",
+    "Angular",
   ],
   sameAs: [
     "https://github.com/mohamedelbeek55",
@@ -116,7 +120,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <script
@@ -124,11 +128,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#090a0d] text-[#f4f4f7] antialiased selection:bg-blue-500/30 selection:text-white">
+      <body className="min-h-screen flex flex-col bg-[var(--bg-deep-black)] text-[var(--text-primary)] antialiased selection:bg-blue-500/30 selection:text-white">
         {/* Accessible Skip Link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-blue-600 focus:text-white focus:text-xs focus:font-mono focus:rounded focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-[var(--accent-electric)] focus:text-white focus:text-xs focus:font-mono focus:rounded focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
         >
           Skip to main content
         </a>

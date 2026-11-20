@@ -23,10 +23,8 @@ export default function Home() {
           {/* Section B: Cinematic Hero with 3D Digital Engineering Core */}
           <Hero />
 
-          {/* Section C: Featured Projects Showcase (Tier 1, Tier 2, Tier 3) */}
-          <SectionReveal>
-            <FeaturedProjects />
-          </SectionReveal>
+          {/* Section C: Featured Projects Sequential Stacking Showcase */}
+          <FeaturedProjects />
 
           {/* Section E: Interactive Technical Toolkit */}
           <SectionReveal>

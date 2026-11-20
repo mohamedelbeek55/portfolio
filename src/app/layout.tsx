@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { MobileTouchFollower } from "@/components/ui/MobileTouchFollower";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -136,6 +138,11 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+
+        {/* Cinematic Desktop Custom Cursor & Mobile Touch Follower */}
+        <CustomCursor />
+        <MobileTouchFollower />
+
         {children}
       </body>
     </html>

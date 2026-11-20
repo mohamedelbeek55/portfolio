@@ -61,17 +61,17 @@ export function ProjectPreviewOverlay({
       role="dialog"
       aria-modal="true"
       aria-labelledby="preview-overlay-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-[#080B12]/85 backdrop-blur-xl animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-10 bg-[#080B12]/85 backdrop-blur-xl animate-in fade-in duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
         ref={overlayRef}
-        className="relative w-full max-w-4xl max-h-[90vh] bg-gradient-to-b from-[#0C1424] to-[#080B12] border border-[var(--border-strong)] rounded-2xl overflow-y-auto shadow-2xl shadow-black/90 flex flex-col focus:outline-none"
+        className="relative w-full max-w-4xl max-h-[85vh] sm:max-h-[90vh] bg-gradient-to-b from-[#0C1424] to-[#080B12] border border-[var(--border-strong)] rounded-2xl overflow-y-auto overscroll-contain shadow-2xl shadow-black/90 flex flex-col focus:outline-none"
       >
         {/* Top Header Bar */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-[#0C1424]/90 backdrop-blur-md border-b border-[var(--border-subtle)]">
+        <div className="sticky top-0 z-20 flex items-center justify-between px-5 sm:px-6 py-3.5 sm:py-4 bg-[#0C1424]/90 backdrop-blur-md border-b border-[var(--border-subtle)]">
           <div className="flex items-center gap-3">
             <span className="font-mono-code text-xs text-[var(--accent-neon-cyan)] px-2.5 py-1 rounded bg-[var(--accent-neon-cyan)]/10 border border-[var(--accent-neon-cyan)]/30 font-semibold">
               PROJECT 0{project.order}
@@ -85,7 +85,7 @@ export function ProjectPreviewOverlay({
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="p-2 text-[var(--text-secondary)] hover:text-white rounded-lg hover:bg-white/[0.08] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)]"
+            className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-[var(--text-secondary)] hover:text-white rounded-lg hover:bg-white/[0.08] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)]"
             aria-label="Close preview overlay"
           >
             <X className="w-5 h-5" />
@@ -193,14 +193,14 @@ export function ProjectPreviewOverlay({
         </div>
 
         {/* Footer Actions */}
-        <div className="sticky bottom-0 z-20 flex flex-wrap items-center justify-between gap-3 px-6 py-4 bg-[#0C1424]/95 backdrop-blur-md border-t border-[var(--border-subtle)]">
+        <div className="sticky bottom-0 z-20 flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-3.5 sm:py-4 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] bg-[#0C1424]/95 backdrop-blur-md border-t border-[var(--border-subtle)]">
           <div className="flex flex-wrap items-center gap-2">
             {githubLink && (
               <a
                 href={githubLink.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#080B12] hover:bg-white/[0.06] border border-[var(--border-medium)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-[#080B12] hover:bg-white/[0.06] border border-[var(--border-medium)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors min-h-[44px]"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
                 <span>{githubLink.label}</span>
@@ -213,7 +213,7 @@ export function ProjectPreviewOverlay({
                 href={liveLink.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#080B12] hover:bg-white/[0.06] border border-[var(--border-medium)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-[#080B12] hover:bg-white/[0.06] border border-[var(--border-medium)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors min-h-[44px]"
               >
                 <span>{liveLink.label}</span>
                 <ExternalLink className="w-3 h-3 text-[var(--text-tertiary)]" />
@@ -225,7 +225,7 @@ export function ProjectPreviewOverlay({
                 href={apiDocsLink.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#080B12] hover:bg-white/[0.06] border border-[var(--border-medium)] text-xs font-mono-code text-[var(--accent-neon-cyan)] hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-[#080B12] hover:bg-white/[0.06] border border-[var(--border-medium)] text-xs font-mono-code text-[var(--accent-neon-cyan)] hover:text-white transition-colors min-h-[44px]"
               >
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>{apiDocsLink.label}</span>
@@ -238,7 +238,7 @@ export function ProjectPreviewOverlay({
             <Link
               href={`/projects/${project.slug}`}
               onClick={onClose}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent-electric)] hover:bg-[var(--accent-electric-hover)] text-white text-xs sm:text-sm font-semibold transition-all duration-200 shadow-[0_0_20px_rgba(37,99,235,0.3)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent-electric)] hover:bg-[var(--accent-electric-hover)] text-white text-xs sm:text-sm font-semibold transition-all duration-200 shadow-[0_0_20px_rgba(37,99,235,0.3)] min-h-[44px]"
             >
               <span>Explore Case Study</span>
               <ArrowRight className="w-4 h-4" />

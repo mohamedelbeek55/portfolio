@@ -177,7 +177,7 @@ export function Hero() {
       ref={trackRef}
       className={`relative w-full ${
         isReducedMotion ? "min-h-screen" : "h-[320vh]"
-      } bg-[#080B12]`}
+      } bg-[#080B12] overflow-hidden`}
     >
       {/* Sticky Fullscreen 3D Viewport */}
       <div className="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden flex flex-col justify-between select-none">
@@ -351,7 +351,7 @@ export function Hero() {
                 href={meta.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-white transition-colors py-2 px-1 focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)] rounded"
+                className="inline-flex items-center gap-1.5 hover:text-white transition-colors py-2 px-1 focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)] rounded min-h-[44px]"
                 aria-label="Mohamed Elbeek GitHub Profile"
               >
                 <span>GitHub</span>
@@ -362,7 +362,7 @@ export function Hero() {
                 href={meta.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-white transition-colors py-2 px-1 focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)] rounded"
+                className="inline-flex items-center gap-1.5 hover:text-white transition-colors py-2 px-1 focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)] rounded min-h-[44px]"
                 aria-label="Mohamed Elbeek LinkedIn Profile"
               >
                 <span>LinkedIn</span>
@@ -372,7 +372,7 @@ export function Hero() {
               <a
                 href={meta.cvPath}
                 download="Mohamed_Elbeek_CV.pdf"
-                className="inline-flex items-center gap-1.5 text-[var(--accent-neon-cyan)] hover:text-white transition-colors py-2 px-1 focus-visible:ring-2 focus-visible:ring-[var(--accent-neon-cyan)] rounded"
+                className="inline-flex items-center gap-1.5 text-[var(--accent-neon-cyan)] hover:text-white transition-colors py-2 px-1 focus-visible:ring-2 focus-visible:ring-[var(--accent-neon-cyan)] rounded min-h-[44px]"
                 aria-label="Download Mohamed Elbeek CV PDF"
               >
                 <FileText className="w-3.5 h-3.5" />
@@ -391,7 +391,7 @@ export function Hero() {
           </div>
 
           {/* Interactive Scrub Progress Bar (GPU transform scaleX) */}
-          <div className="w-36 sm:w-64 h-1.5 rounded-full bg-[#0C1424] border border-[var(--border-subtle)] overflow-hidden">
+          <div className="w-20 sm:w-64 h-1.5 rounded-full bg-[#0C1424] border border-[var(--border-subtle)] overflow-hidden shrink-0">
             <div
               ref={progressBarRef}
               className="w-full h-full bg-gradient-to-r from-[var(--accent-electric)] to-[var(--accent-neon-cyan)] origin-left will-change-transform"

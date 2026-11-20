@@ -172,7 +172,7 @@ export function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2.5 text-[var(--text-secondary)] hover:text-white border border-[var(--border-medium)] bg-[#0C1424] rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)] transition-colors"
             aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? "Close navigation drawer" : "Open navigation drawer"}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -185,7 +185,7 @@ export function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Drawer"
-          className="fixed inset-0 top-[65px] bg-[#080B12]/98 backdrop-blur-2xl border-t border-[var(--border-subtle)] z-40 md:hidden flex flex-col p-6 overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300"
+          className="fixed inset-0 top-[65px] bg-[#080B12]/98 backdrop-blur-2xl border-t border-[var(--border-subtle)] z-40 md:hidden flex flex-col p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] overflow-y-auto overscroll-contain animate-in fade-in slide-in-from-top-4 duration-300"
         >
           {/* Header indicator */}
           <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border-subtle)]">

@@ -251,11 +251,11 @@ export function TechnicalToolkit() {
       : TECH_NODES.filter((n) => n.category === activeCluster);
 
   return (
-    <section id="expertise" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#080B12] overflow-hidden">
+    <section id="expertise" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#080B12] overflow-hidden scroll-mt-20">
       {/* Background Engineering Grids */}
       <div className="absolute inset-0 engineering-grid opacity-15 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[var(--accent-electric)]/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-[var(--accent-neon-cyan)]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[500px] max-w-full h-[500px] bg-[var(--accent-electric)]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[400px] max-w-full h-[400px] bg-[var(--accent-neon-cyan)]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -296,7 +296,7 @@ export function TechnicalToolkit() {
                 key={cluster.id}
                 type="button"
                 onClick={() => setActiveCluster(cluster.id)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono-code transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono-code transition-all cursor-pointer min-h-[44px] ${
                   isActive
                     ? "bg-[var(--accent-electric)] text-white font-semibold shadow-[0_0_20px_rgba(37,99,235,0.35)]"
                     : "bg-[#0C1424]/80 text-[var(--text-secondary)] hover:text-white hover:bg-[#111C33] border border-[var(--border-subtle)]"
@@ -437,7 +437,7 @@ export function TechnicalToolkit() {
                       key={connId}
                       type="button"
                       onClick={() => setSelectedTechId(connId)}
-                      className="px-2.5 py-1 rounded bg-[#111C33] hover:bg-[#1C2C4E] border border-[var(--border-subtle)] text-[11px] font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors cursor-pointer"
+                      className="px-3 py-1.5 min-h-[36px] sm:min-h-0 rounded bg-[#111C33] hover:bg-[#1C2C4E] border border-[var(--border-subtle)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors cursor-pointer"
                     >
                       {targetNode ? targetNode.name : connId}
                     </button>
@@ -456,7 +456,7 @@ export function TechnicalToolkit() {
                   <Link
                     key={p.slug}
                     href={`/projects/${p.slug}`}
-                    className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-[var(--accent-electric)]/15 hover:bg-[var(--accent-electric)]/30 border border-[var(--accent-electric)]/35 text-xs font-mono-code text-[var(--accent-neon-cyan)] hover:text-white transition-all"
+                    className="inline-flex items-center gap-1 px-3 py-2 min-h-[44px] sm:min-h-0 sm:py-1 rounded-lg bg-[var(--accent-electric)]/15 hover:bg-[var(--accent-electric)]/30 border border-[var(--accent-electric)]/35 text-xs font-mono-code text-[var(--accent-neon-cyan)] hover:text-white transition-all"
                   >
                     <span>{p.name}</span>
                     <ArrowRight className="w-3 h-3" />

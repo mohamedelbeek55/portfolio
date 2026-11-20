@@ -160,9 +160,9 @@ export function EngineeringWorkflow() {
   const Icon = activeStage.icon;
 
   return (
-    <section id="workflow" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#07080a]">
+    <section id="workflow" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#07080a] overflow-hidden scroll-mt-20">
       {/* Background radial atmosphere */}
-      <div className="absolute top-1/2 right-1/3 w-96 h-96 bg-[var(--accent-electric)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/3 w-96 max-w-full h-96 bg-[var(--accent-electric)]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -318,7 +318,7 @@ export function EngineeringWorkflow() {
                 onClick={() =>
                   setActiveStageIndex((activeStageIndex + 1) % STAGES.length)
                 }
-                className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[var(--accent-electric)] hover:bg-[var(--accent-electric-hover)] text-white text-xs font-semibold transition-colors shadow-md"
+                className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[var(--accent-electric)] hover:bg-[var(--accent-electric-hover)] text-white text-xs font-semibold transition-colors shadow-md min-h-[44px]"
               >
                 <span>Next Stage</span>
                 <ArrowRight className="w-3.5 h-3.5" />

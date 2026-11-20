@@ -41,7 +41,7 @@ export function GenericCaseStudyView({ project }: GenericCaseStudyViewProps) {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/#work"
-            className="inline-flex items-center gap-2 text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors p-1 -ml-1 rounded focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)]"
+            className="inline-flex items-center gap-2 text-xs font-mono-code text-[var(--text-secondary)] hover:text-white transition-colors px-2.5 py-2 -ml-1 rounded-lg focus-visible:ring-2 focus-visible:ring-[var(--accent-electric)] min-h-[44px]"
           >
             <ArrowLeft className="w-4 h-4 text-[var(--accent-neon-cyan)]" />
             <span>&larr; Back to Portfolio</span>
@@ -170,7 +170,7 @@ export function GenericCaseStudyView({ project }: GenericCaseStudyViewProps) {
               <button
                 type="button"
                 onClick={() => setActiveTab("architecture")}
-                className={`px-3 py-1 rounded text-xs font-mono-code transition-colors ${
+                className={`px-3.5 py-2 sm:py-1 rounded text-xs font-mono-code transition-colors min-h-[40px] sm:min-h-0 ${
                   activeTab === "architecture"
                     ? "bg-[var(--accent-electric)] text-white font-medium"
                     : "text-[var(--text-tertiary)] hover:text-white"
@@ -181,7 +181,7 @@ export function GenericCaseStudyView({ project }: GenericCaseStudyViewProps) {
               <button
                 type="button"
                 onClick={() => setActiveTab("decisions")}
-                className={`px-3 py-1 rounded text-xs font-mono-code transition-colors ${
+                className={`px-3.5 py-2 sm:py-1 rounded text-xs font-mono-code transition-colors min-h-[40px] sm:min-h-0 ${
                   activeTab === "decisions"
                     ? "bg-[var(--accent-electric)] text-white font-medium"
                     : "text-[var(--text-tertiary)] hover:text-white"

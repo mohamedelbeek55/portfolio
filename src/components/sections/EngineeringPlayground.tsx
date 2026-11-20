@@ -267,10 +267,10 @@ export function EngineeringPlayground() {
   };
 
   return (
-    <section id="engineering" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#080B12] overflow-hidden">
+    <section id="engineering" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#080B12] overflow-hidden scroll-mt-20">
       {/* Background radial glow */}
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[var(--accent-electric)]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-[var(--accent-neon-cyan)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-96 max-w-full h-96 bg-[var(--accent-electric)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-1/4 w-96 max-w-full h-96 bg-[var(--accent-neon-cyan)]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -293,7 +293,7 @@ export function EngineeringPlayground() {
             <button
               type="button"
               onClick={() => setActiveTab("lifecycle")}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono-code transition-all cursor-pointer ${
+              className={`px-4 py-2.5 rounded-lg text-xs font-mono-code transition-all cursor-pointer min-h-[44px] flex items-center ${
                 activeTab === "lifecycle"
                   ? "bg-[var(--accent-electric)] text-white font-semibold shadow-md"
                   : "text-[var(--text-secondary)] hover:text-white"
@@ -304,7 +304,7 @@ export function EngineeringPlayground() {
             <button
               type="button"
               onClick={() => setActiveTab("layers")}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono-code transition-all cursor-pointer ${
+              className={`px-4 py-2.5 rounded-lg text-xs font-mono-code transition-all cursor-pointer min-h-[44px] flex items-center ${
                 activeTab === "layers"
                   ? "bg-[var(--accent-electric)] text-white font-semibold shadow-md"
                   : "text-[var(--text-secondary)] hover:text-white"
@@ -342,7 +342,7 @@ export function EngineeringPlayground() {
                 type="button"
                 onClick={runSimulation}
                 disabled={isSimulating}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--accent-electric)] hover:bg-[var(--accent-electric-hover)] disabled:opacity-50 text-white text-xs font-mono-code font-semibold transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[var(--accent-electric)] hover:bg-[var(--accent-electric-hover)] disabled:opacity-50 text-white text-xs font-mono-code font-semibold transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] cursor-pointer min-h-[44px]"
               >
                 {isSimulating ? (
                   <>
@@ -359,7 +359,7 @@ export function EngineeringPlayground() {
             </div>
 
             {/* Interactive Flow Stepper Conduit */}
-            <div className="p-4 sm:p-6 rounded-2xl bg-[#0C1424]/80 border border-[var(--border-medium)] mb-8 overflow-x-auto shadow-xl">
+            <div className="w-full max-w-full p-4 sm:p-6 rounded-2xl bg-[#0C1424]/80 border border-[var(--border-medium)] mb-8 overflow-x-auto shadow-xl">
               <div className="flex items-center justify-between min-w-[700px] gap-2">
                 {FLOW_NODES.map((node, index) => {
                   const isSelected = selectedNodeIndex === index;

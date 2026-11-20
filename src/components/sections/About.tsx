@@ -17,10 +17,10 @@ export function About() {
   const { about, meta } = siteContent;
 
   return (
-    <section id="about" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#080B12] overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-28 lg:py-32 border-b border-[var(--border-subtle)] bg-[#080B12] overflow-hidden scroll-mt-20">
       {/* Background radial atmospheric glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[var(--accent-electric)]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-[var(--accent-neon-cyan)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 max-w-full h-96 bg-[var(--accent-electric)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-96 max-w-full h-96 bg-[var(--accent-neon-cyan)]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -83,7 +83,7 @@ export function About() {
               <a
                 href={meta.cvPath}
                 download="Mohamed_Elbeek_CV.pdf"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0C1424] hover:bg-[#111C33] border border-[var(--border-cyan)] text-xs sm:text-sm font-mono-code text-[var(--accent-neon-cyan)] hover:text-white transition-all shadow-[0_0_15px_rgba(56,189,248,0.12)] cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0C1424] hover:bg-[#111C33] border border-[var(--border-cyan)] text-xs sm:text-sm font-mono-code text-[var(--accent-neon-cyan)] hover:text-white transition-all shadow-[0_0_15px_rgba(56,189,248,0.12)] cursor-pointer min-h-[48px]"
                 aria-label="Download Mohamed Elbeek CV PDF"
               >
                 <FileText className="w-4 h-4 text-[var(--accent-neon-cyan)]" />
@@ -179,7 +179,7 @@ export function About() {
                       href={meta.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-[#080B12] hover:bg-white/[0.05] border border-[var(--border-subtle)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white flex items-center justify-between transition-colors"
+                      className="p-3 rounded-lg bg-[#080B12] hover:bg-white/[0.05] border border-[var(--border-subtle)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white flex items-center justify-between transition-colors min-h-[44px]"
                     >
                       <span>GitHub</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-tertiary)]" />
@@ -188,7 +188,7 @@ export function About() {
                       href={meta.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-[#080B12] hover:bg-white/[0.05] border border-[var(--border-subtle)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white flex items-center justify-between transition-colors"
+                      className="p-3 rounded-lg bg-[#080B12] hover:bg-white/[0.05] border border-[var(--border-subtle)] text-xs font-mono-code text-[var(--text-secondary)] hover:text-white flex items-center justify-between transition-colors min-h-[44px]"
                     >
                       <span>LinkedIn</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-tertiary)]" />
